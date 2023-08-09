@@ -2,7 +2,7 @@ const express = require('express');
 const router = new express.Router();
 const ExpressError = require('../expressError');
 const items = require('../fakeDB');
-console.log(items)
+
 
 
 router.get("/", (req, res) => {
@@ -17,7 +17,7 @@ router.post("/", (req, res, next) => {
         const newItem = {name: name, price: price}
         console.log(newItem)
         items.push(newItem)
-        return res.json({ added: newItem })
+        return res.status(201).json({ added: newItem })
     } catch(e) {
         return next(e);
     }
